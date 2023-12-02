@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def require_authorization
+    redirect_to root_path unless logged_in?
+  end
 end

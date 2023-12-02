@@ -1,0 +1,22 @@
+<div class="w-2/3 mx-auto">
+  <h2> Редагувати інформацію робочого акаунту </h2>
+  <%= flash[:error] %>
+  <%= form_with model: @worker, method: :put, class: "flex flex-col" do |f| %>
+    <div class="input-wrapper">
+      <%= f.label :category, "Категорія, в якій ви будете надавати послуги" %>
+      <%= f.text_field :category, value: @worker.category, required: true %>
+    </div>
+    <div class="input-wrapper">
+      <%= f.label :description, "Ваш короткий опис" %>
+      <%= f.text_area :description, value: @worker.description, class: "min-h-[120px]", required: true %>
+    </div>
+    <div class="input-wrapper">
+      <%= f.label :looking_for_work, "На даний момент відкриті до нових пропозицій" %>
+      <%= f.check_box :looking_for_work, value: @worker.looking_for_work, class: "mr-auto"%>
+    </div>
+    <div class="flex gap-4 mt-5 justify-end">
+      <%= link_to "Назад", root_path, class: "button secondary-button" %>
+      <%= f.submit "Редагувати", class: "button primary-button" %>
+    </div>
+  <% end %>
+</div>

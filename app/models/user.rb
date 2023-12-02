@@ -3,4 +3,7 @@ class User < ApplicationRecord
 
   validates :username, :email, :phone_number, uniqueness: true, presence: true
   validates :password, presence: true, length: { minimum: 6 }, on: :create
+  validates :phone_number, phone: true
+
+  has_one :worker, dependent: :destroy
 end

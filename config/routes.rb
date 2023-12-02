@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   root "pages#index"
   resource :sessions, only: %i(destroy create new)
   resources :users
+  resources :workers
+  resource :worker_accounts, only: %i(show edit)
 end
