@@ -1,4 +1,4 @@
-input:not([type="submit"]) {
+textarea, input:not([type="checkbox"]):not([type="submit"]) {
   @apply shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none;
 }
 
@@ -7,5 +7,13 @@ input:not([type="submit"]) {
 
   label {
     @apply mb-1;
+  }
+}
+
+.field_with_errors {
+  @apply contents;
+
+  input {
+    @apply border border-red-300;
   }
 }
