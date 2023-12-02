@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :users
   resources :workers
   resource :worker_accounts, only: %i(show edit)
+  resources :services
 end

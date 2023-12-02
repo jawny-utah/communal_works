@@ -11,20 +11,9 @@
   </head>
 
   <body>
-    <h1><%= link_to "OLX", root_path %></h1>
-    <% if current_user %>
-      <h3> Поточний користувач </h3>
-      <% if current_user.worker.present? %>
-        <%= link_to "Перейти в робочий акаунт", worker_accounts_path, class: "button primary-button" %>
-      <% else %>
-        <%= link_to "Зареєструвати робочий акаунт", new_worker_path, class: "button primary-button" %>
-      <% end %>
-      <%= current_user.full_name %>
-      <%= button_to "Вийти", sessions_path, method: :delete, class: "button red-button"  %>
-    <% else %>
-      <%= link_to "Реєстрація", new_user_path, class: "button primary-button" %>
-      <%= link_to "Авторизація", new_sessions_path, class: "button primary-button" %>
-    <% end %>
-    <%= yield %>
+    <%= render partial: "layouts/nav_bar" %>
+    <div class="max-w-screen-xl mx-auto mt-4">
+      <%= yield %>
+    </div>
   </body>
 </html>

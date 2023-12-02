@@ -1,0 +1,10 @@
+<h2 class="mb-8"> Перелік всіх виконавців </h2>
+<div class="flex flex-col gap-4">
+  <% Worker.all.each do |worker| %>
+    <%= link_to worker_path(worker), class: "block w-auto border border-solid border-gray-500 p-4 rounded-xl hover:bg-gray-200" do %>
+      <h3> <%= worker.full_name %> </h3>
+      <h4> <%= worker.category %> </h4>
+      <p> <%= worker.description %> </p>
+    <% end %>
+  <% end %>
+</div>
