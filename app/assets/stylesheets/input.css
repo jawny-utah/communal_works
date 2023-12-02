@@ -1,0 +1,11 @@
+input:not([type="submit"]) {
+  @apply shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none;
+}
+
+.input-wrapper {
+  @apply flex flex-col my-2;
+
+  label {
+    @apply mb-1;
+  }
+}

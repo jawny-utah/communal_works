@@ -1,0 +1,18 @@
+<div class="w-2/3 mx-auto">
+  <h2> Авторизація </h2>
+  <%= flash[:error] %>
+  <%= form_with url: sessions_path, method: :post, class: "flex flex-col" do |f| %>
+    <div class="input-wrapper">
+      <%= f.label :email, "Електронна пошта *" %>
+      <%= f.text_field :email, required: true %>
+    </div>
+    <div class="input-wrapper">
+      <%= f.label :password, "Пароль *" %>
+      <%= f.text_field :password, type: :password, required: true %>
+    </div>
+    <div class="flex gap-4 mt-5 justify-end">
+      <%= link_to "Назад", root_path, class: "button secondary-button" %>
+      <%= f.submit "Підтвердити", class: "button primary-button" %>
+    </div>
+  <% end %>
+</div>

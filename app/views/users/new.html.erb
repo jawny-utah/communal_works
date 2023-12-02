@@ -1,0 +1,38 @@
+<div class="w-2/3 mx-auto">
+  <h2> Реєстрація нового користувача </h2>
+  <%= flash[:error] %>
+  <%= form_with model: @user, class: "flex flex-col" do |f| %>
+    <div class="input-wrapper">
+      <%= f.label :email, "Електронна пошта *" %>
+      <%= f.text_field :email, required: true %>
+    </div>
+    <div class="input-wrapper">
+      <%= f.label :full_name, "Повне ім'я *" %>
+      <%= f.text_field :full_name, required: true %>
+    </div>
+    <div class="input-wrapper">
+      <%= f.label :username, "Ім'я користувача *" %>
+      <%= f.text_field :username, required: true %>
+    </div>
+    <div class="input-wrapper">
+      <%= f.label :phone_number, "Телефон *" %>
+      <%= f.text_field :phone_number, required: true %>
+    </div>
+    <div class="input-wrapper">
+      <%= f.label :date_of_birth, "Дата народження" %>
+      <%= f.date_field :date_of_birth, as: :date %>
+    </div>
+    <div class="input-wrapper">
+      <%= f.label :password, "Пароль *" %>
+      <%= f.text_field :password, type: :password, required: true  %>
+    </div>
+    <div class="input-wrapper">
+      <%= f.label :password_confirmation, "Повторіть пароль *" %>
+      <%= f.text_field :password_confirmation, type: :password, required: true %>
+    </div>
+    <div class="flex gap-4 mt-5 justify-end">
+      <%= link_to "Назад", root_path, class: "button secondary-button" %>
+      <%= f.submit "Підтвердити", class: "button primary-button" %>
+    </div>
+  <% end %>
+</div>
