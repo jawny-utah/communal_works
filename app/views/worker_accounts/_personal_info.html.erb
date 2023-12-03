@@ -1,0 +1,22 @@
+<div class="block-wrapper">
+  <h2> Ваш робочий аккаунт </h2>
+  <h4> Тут будуть відображені всі ваші послуги та замовлення, що зробили користувачі сайту. </h4>
+  <hr>
+  <h4 class="mt-4"> Ваша інформація </h4>
+  <p>
+    Категорія:
+    <%= @worker_account.category %>
+  </p>
+  <p>
+    Опис:
+    <%= @worker_account.description %>
+  </p>
+  <p>
+    Відкриті до нової роботи:
+    <%= @worker_account.looking_for_work %>
+  </p>
+  <div class="flex gap-4 mt-5 justify-end">
+    <%= link_to "Редагувати", edit_worker_accounts_path, class: "button primary-button" %>
+    <%= link_to "Створити послугу", new_service_path, class: "button primary-button" %>
+  </div>
+</div>

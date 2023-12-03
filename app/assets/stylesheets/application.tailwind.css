@@ -4,5 +4,20 @@
 @import "input";
 @import "heading";
 @import "buttons";
+@import "services";
+@import "worker";
+@import "tab";
 
 @import "tailwindcss/utilities";
+
+body {
+  @apply bg-gray-200 mb-12;
+}
+
+.block-wrapper {
+  @apply bg-white px-8 py-6 rounded-xl;
+}
+
+hr {
+  @apply border border-gray-300;
+}

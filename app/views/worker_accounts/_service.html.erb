@@ -1,0 +1,11 @@
+<div class="service">
+  <%= link_to service_path(service) do %>
+    <h3> <%= service.title %> </h3>
+    <p> <%= service.description %> </p>
+    <p> Статус: <%= service_status(service.status) %> </p>
+  <% end %>
+  <div class="mt-4 flex gap-3">
+    <%= link_to "Редагувати", edit_service_path(service), class: "button primary-button" %>
+    <%= button_to "Видалити", service_path(service), method: :delete, class: "button red-button" %>
+  </div>
+</div>

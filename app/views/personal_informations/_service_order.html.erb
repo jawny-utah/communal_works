@@ -1,0 +1,7 @@
+<%= link_to service_order_path(service_order), class: "service" do %>
+  <p class="text-xs"> Було створено <%= service_order.created_at %> </p>
+  <h3> <%= service_order.service.title %> </h3>
+  <p> <%= service_order.contact_info %> </p>
+  <p> <%= service_order.description %> </p>
+  <p> Поточний статус: <%= service_order_status(service_order.status) %> </p>
+<% end %>

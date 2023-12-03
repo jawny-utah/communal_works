@@ -1,0 +1,17 @@
+
+<div class="w-2/3 mx-auto block-wrapper">
+  <h2> Введіть причину відмови від замовлення</h2>
+  <%= flash[:error] %>
+  <%= form_with model: @service_order, method: :delete, class: "flex flex-col" do |f| %>
+    <%- cancelled_by_user = @service_order.user.id == current_user.id %>
+    <%= f.hidden_field :cancelled_by_user, value: cancelled_by_user %>
+    <div class="input-wrapper">
+      <%= f.label :cancellation_reason, "Причина відмови:" %>
+      <%= f.text_area :cancellation_reason, required: true %>
+    </div>
+    <div class="flex gap-4 mt-5 justify-end">
+      <%= link_to "< Назад ", service_order_path(@service_order), class: "button secondary-button" %>
+      <%= f.submit "Підтвердити", class: "button red-button" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,10 @@
+<%= render partial: "worker_accounts/personal_info" %>
+<div class="mt-6 flex gap-6">
+  <%= link_to "Ваші створені послуги", worker_accounts_path, class: "tab" %>
+  <div class="tab active-tab"> Замовлення </div>
+</div>
+<div class="service-wrapper mt-6">
+  <% @worker_account.service_orders.each do |service_order| %>
+    <%= render partial: "worker_accounts/service_order", locals: { service_order: service_order } %>
+  <% end %>
+</div>

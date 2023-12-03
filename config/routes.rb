@@ -6,6 +6,14 @@ Rails.application.routes.draw do
   resource :sessions, only: %i(destroy create new)
   resources :users
   resources :workers
-  resource :worker_accounts, only: %i(show edit)
-  resources :services
+  resource :worker_accounts, only: %i(show edit) do
+    get :service_orders, on: :collection
+  end
+  resources :services do
+    resources :service_orders, only: %i(new)
+  end
+  resources :service_orders, except: :new do
+    get :cancellation_reason_page, on: :member
+  end
+  resource :personal_informations, only: :show
 end

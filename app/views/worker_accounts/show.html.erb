@@ -1,33 +1,10 @@
-<h2> Ваш робочий аккаунт </h2>
-<p> Тут будуть відображені всі ваші послуги та замовлення, що зробили користувачі сайту </p>
-<h4> Ваша інформація </h4>
-<p>
-  Категорія:
-  <%= @worker_account.category %>
-</p>
-<p>
-  Опис:
-  <%= @worker_account.description %>
-</p>
-<p>
-  Відкриті до нової роботи:
-  <%= @worker_account.looking_for_work %>
-</p>
-<div class="flex gap-4 mt-5 justify-end">
-  <%= link_to "Редагувати", edit_worker_accounts_path, class: "button primary-button" %>
-  <%= link_to "Створити послугу", new_service_path, class: "button primary-button" %>
+<%= render partial: "worker_accounts/personal_info" %>
+<div class="mt-6 flex gap-6">
+  <div class="tab active-tab"> Ваші створені послуги </div>
+  <%= link_to "Замовлення", service_orders_worker_accounts_path, class: "tab" %>
 </div>
-<div class="flex flex-col gap-4 mt-5">
+<div class="service-wrapper mt-6">
   <% @worker_account.services.all.each do |service| %>
-    <div class="block w-auto border border-solid border-gray-500 p-4 rounded-xl hover:bg-gray-200">
-      <%= link_to service_path(service) do %>
-        <h3> <%= service.title %> </h3>
-        <p> <%= service.description %> </p>
-      <% end %>
-      <div class="mt-4 flex gap-3">
-        <%= link_to "Редагувати", edit_service_path(service), class: "button primary-button" %>
-        <%= button_to "Видалити", service_path(service), method: :delete, class: "button red-button" %>
-      </div>
-    </div>
+    <%= render partial: "worker_accounts/service", locals: { service: service } %>
   <% end %>
 </div>
