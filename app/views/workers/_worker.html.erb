@@ -1,0 +1,8 @@
+<%= link_to worker_path(worker), class: "worker" do %>
+  <h3> <%= worker.full_name %> </h3>
+  <h4> <%= worker.category %> </h4>
+  <p> <%= worker.description %> </p>
+  <p> Успішно виконано замовлень: <%= worker.service_orders.finished.count %> </p>
+  <p class="text-xs mt-4"> На сайті з <%= worker.created_at.strftime("%F") %> </p>
+  <div class="button primary-button mt-4"> Детальніше </div>
+<% end %>

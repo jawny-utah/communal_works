@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :already_authorized?
   helper_method :logged_in?
+  helper_method :require_authorization
 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])

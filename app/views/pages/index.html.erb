@@ -1,14 +1,6 @@
-<h3> Всі користувачі </h3>
-<% User.all.each do |user| %>
-  <p><%= user.full_name %></p>
-  <p><%= user.email %></p>
-<% end %>
-<h3> Всі послуги </h3>
-<div class="flex flex-col gap-4">
+<h3 class="mb-8"> Всі послуги </h3>
+<div class="service-wrapper">
   <% Service.all.each do |service| %>
-    <%= link_to service_path(service), class: "block w-auto border border-solid border-gray-500 p-4 rounded-xl hover:bg-gray-200" do %>
-      <h3> <%= service.title %> </h3>
-      <p> <%= service.description %> </p>
-    <% end %>
+    <%= render partial: "services/service", locals: { service: service } %>
   <% end %>
 </div>

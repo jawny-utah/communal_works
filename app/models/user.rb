@@ -6,4 +6,5 @@ class User < ApplicationRecord
   validates :phone_number, phone: true
 
   has_one :worker, dependent: :destroy
+  has_many :service_orders, dependent: :destroy
 end

@@ -1,0 +1,7 @@
+.service-wrapper {
+  @apply flex gap-4 flex-wrap;
+
+  .service {
+    @apply min-w-[200px] flex w-1/4 bg-white flex-col border border-solid border-gray-300 p-4 rounded-xl hover:bg-gray-100;
+  }
+}

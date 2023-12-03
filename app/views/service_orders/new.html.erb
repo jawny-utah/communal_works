@@ -1,0 +1,19 @@
+<div class="w-2/3 mx-auto block-wrapper">
+  <h2> Створити замовлення </h2>
+  <%= flash[:error] %>
+  <%= form_with model: @service_order, class: "flex flex-col" do |f| %>
+    <%= f.hidden_field :service_id, value: params[:service_id] %>
+    <div class="input-wrapper">
+      <%= f.label :contact_info, "Контактна інформація" %>
+      <%= f.text_field :contact_info, required: true %>
+    </div>
+    <div class="input-wrapper">
+      <%= f.label :description, "Опис ваших потреб" %>
+      <%= f.text_area :description, class: "min-h-[120px]", required: true %>
+    </div>
+    <div class="flex gap-4 mt-5 justify-end">
+      <%= link_to "< Назад ", request.referrer, class: "button secondary-button" %>
+      <%= f.submit "Підтвердити", class: "button primary-button" %>
+    </div>
+  <% end %>
+</div>

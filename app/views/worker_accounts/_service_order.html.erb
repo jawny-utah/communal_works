@@ -1,0 +1,12 @@
+<div class="service">
+  <%= link_to service_order_path(service_order) do %>
+    <h3> <%= service_order.service.title %> </h3>
+    <p> Контакт: <%= service_order.contact_info %> </p>
+    <p> Повне ім'я замовника: <%= service_order.user.full_name %> </p>
+    <p> <%= service_order.description %> </p>
+    <p> Статус: <%= service_order_status(service_order.status) %> </p>
+  <% end %>
+  <div class="mt-4 flex gap-3">
+    <%= link_to "Детальніше", service_order_path(service_order), class: "button primary-button" %>
+  </div>
+</div>

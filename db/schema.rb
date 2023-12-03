@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_02_193536) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_03_111500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "service_orders", force: :cascade do |t|
+    t.bigint "service_id"
+    t.bigint "user_id"
+    t.integer "status", default: 0
+    t.string "description"
+    t.string "contact_info"
+    t.integer "rate"
+    t.string "cancellation_reason"
+    t.boolean "cancelled_by_user"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_id"], name: "index_service_orders_on_service_id"
+    t.index ["user_id"], name: "index_service_orders_on_user_id"
+  end
 
   create_table "services", force: :cascade do |t|
     t.bigint "worker_id"
@@ -22,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_02_193536) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "city"
     t.index ["worker_id"], name: "index_services_on_worker_id"
   end
 
@@ -34,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_02_193536) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "city"
   end
 
   create_table "workers", force: :cascade do |t|

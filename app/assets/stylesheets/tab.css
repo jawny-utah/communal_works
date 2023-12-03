@@ -1,0 +1,8 @@
+.tab {
+  @apply pb-3 flex w-fit text-gray-500;
+}
+
+.active-tab {
+  @apply font-medium border-solid border-b-4 border-blue-500 text-gray-800;
+}
+
