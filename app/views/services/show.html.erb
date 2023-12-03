@@ -1,0 +1,16 @@
+<div class="">
+  <h2> <%= @service.title %> </h2>
+  <p> <%= @service.description %> </p>
+  <p> Ціна питання <%= @service.price %> </p>
+  <div class="mt-5">
+    <h2> Автор </h2>
+    <p> <%= link_to @service.worker.full_name, worker_path(@service.worker), class: "font-medium text-blue-600" %> </p>
+    <p> Зареєестрований на сайті <%= @service.worker.created_at.strftime("%F") %> </p>
+  </div>
+  <div class="mt-4">
+    <% if current_user && service_created_by_current_user?(@service.worker_id) %>
+      <%= link_to "Редагувати", edit_service_path(@service), class: "button primary-button" %>
+    <% end %>
+    <%= link_to "Назад", request.referrer, class: "button secondary-button" %>
+  </div>
+</div>

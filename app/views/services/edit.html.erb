@@ -1,0 +1,22 @@
+<div class="w-2/3 mx-auto">
+  <h2> Редагувати послугу </h2>
+  <%= flash[:error] %>
+  <%= form_with model: @service, method: :put, class: "flex flex-col" do |f| %>
+    <div class="input-wrapper">
+      <%= f.label :title, "Заголовок" %>
+      <%= f.text_field :title, value: @service.title, required: true %>
+    </div>
+    <div class="input-wrapper">
+      <%= f.label :description, "Опис" %>
+      <%= f.text_area :description, value: @service.description, class: "min-h-[120px]", required: true %>
+    </div>
+    <div class="input-wrapper">
+      <%= f.label :price, "Ціна" %>
+      <%= f.text_field :price, value: @service.price, default: true, class: "mr-auto" %>
+    </div>
+    <div class="flex gap-4 mt-5 justify-end">
+      <%= link_to "Назад", request.referrer, class: "button secondary-button" %>
+      <%= f.submit "Підтвердити", class: "button primary-button" %>
+    </div>
+  <% end %>
+</div>

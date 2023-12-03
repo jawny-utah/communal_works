@@ -1,7 +1,12 @@
 class WorkersController < ApplicationController
-  before_action :require_authorization, except: :index
+  before_action :require_authorization, except: %i(index show)
 
   def index
+    @workers = Worker.all
+  end
+
+  def show
+    @worker = Worker.find_by(id: params[:id])
   end
 
   def new
