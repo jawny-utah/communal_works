@@ -1,0 +1,10 @@
+<div class="relative w-full">
+  <%= link_to polymorphic_path(notification.record_class.constantize.find_by(id: notification.record_id)),
+              class: notification_class(notification) do %>
+    <p class="text-xs"><%= time_ago_in_words(notification.created_at) %></p>
+    <p><%= notification.body %></p>
+  <% end %>
+  <%= button_to notification_path(notification.id), method: :delete, form_class: "absolute top-0 right-0 p-2" do %>
+    <%= inline_svg "close.svg", class: "text-red-400 hover:text-red-700" %>
+  <% end %>
+</div>

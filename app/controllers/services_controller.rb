@@ -12,7 +12,7 @@ class ServicesController < ApplicationController
     if @service.valid?
       redirect_to service_path(@service)
     else
-      flash[:error] = @service.errors.full_messages.join(" ")
+      flash[:error] = @service.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end
@@ -29,7 +29,7 @@ class ServicesController < ApplicationController
     if @service.update(service_params)
       redirect_to service_path(@service)
     else
-      flash[:error] = @service.errors.full_messages.join(" ")
+      flash[:error] = @service.errors.full_messages
       render :edit, status: :unprocessable_entity
     end
   end

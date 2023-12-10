@@ -1,16 +1,17 @@
 <div class="block-wrapper">
-  <%= link_to "< Назад", service_orders_worker_accounts_path, class: "button secondary-button mb-4" %>
+  <%= link_to "< Назад", request.referrer, class: "button secondary-button mb-4" %>
   <h3> Замовлення № <%= @service_order.id %> </h3>
-  <%= link_to "Сторінка послуги", service_path(@service_order.service), class: "button primary-button mb-4" %>
-  <p> Було створено <%= @service_order.created_at.strftime("%F") %>
-  <p> Замовник: <%= @service_order.user.full_name %> </p>
-  <p> Контактні дані: <%= @service_order.contact_info %> </p>
-  <p> Опис: <%= @service_order.description %> </p>
-  <p> Статус: <%= service_order_status(@service_order.status) %> </p>
-  <% if @service_order.cancellation_reason %>
-    <p> Причина відміни: <%= @service_order.cancellation_reason %> </p>
-    <p> Відмінив <%= @service_order.cancelled_by_user ? "замовник" : "виконавець" %>. </p>
-  <% end %>
+  <%= link_to "Сторінка послуги", service_path(@service_order.service), class: "button primary-button mb-8" %>
+  <div class="flex">
+    <div class="mr-8">
+      <h4> Статична інформація </h4>
+      <%= render partial: "service_orders/information" %>
+    </div>
+    <div>
+      <h4> Динамічна інформація </h4>
+      <%= render partial: "service_orders/dynamic_information" %>
+    </div>
+  </div>
   <div class="flex gap-4 mt-4">
     <% if @service_order.worker.id == current_user.worker.id %>
       <% if @service_order.on_review? %>
@@ -19,8 +20,11 @@
         <%= button_to "Завершити", service_order_path(@service_order, service_order: { status: :finished }), method: :put, class: "button primary-button" %>
       <% end %>
     <% end %>
+    <% if @service_order.user.id == current_user.id && @service_order.rate == nil && @service_order.finished? %>
+      <%= link_to "Залишити відгук", rate_service_order_path(@service_order), class: "button primary-button" %>
+    <% end %>
     <% unless @service_order.finished? || @service_order.cancelled? %>
-      <%= link_to "Скасувати", cancellation_reason_page_service_order_path(@service_order), class: "button red-button" %>
+      <%= link_to "Скасувати", cancellation_reason_service_order_path(@service_order), class: "button red-button" %>
     <% end %>
   </div>
 </div>

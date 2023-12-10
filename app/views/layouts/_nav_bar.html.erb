@@ -4,8 +4,8 @@
       <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
       <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Рід</span>
     <% end %>
-    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 bg-gray-900">
+    <div class="w-auto" id="navbar-default">
+      <ul class="flex items-center flex-row bg-gray-900">
         <li>
           <%= link_to "Головна", root_path, class: "block py-2 px-3 text-white text-xl hover:text-blue-400" %>
         </li>
@@ -18,11 +18,14 @@
           <% else %>
             <%= link_to "Зареєструвати робочий акаунт", new_worker_path, class: "button primary-button" %>
           <% end %>
-          <p class="text-white py-2 px-3"><%= link_to current_user.full_name, personal_informations_path, class: "hover:text-blue-400" %></p>
+          <%= link_to notifications_path do %>
+            <%= inline_svg "bell_solid", class: notification_bell_classes(current_user) %>
+          <% end %>
+          <%= link_to current_user.full_name, personal_informations_path, class: "hover:text-blue-400 text-white py-2 px-3 leading-7" %>
           <%= button_to "Вийти", sessions_path, method: :delete, class: "block py-2 px-3 text-red-400 text-xl hover:text-red-500"  %>
         <% else %>
           <%= link_to "Реєстрація", new_user_path, class: "button primary-button" %>
-          <%= link_to "Авторизація", new_sessions_path, class: "button primary-button" %>
+          <%= link_to "Авторизація", new_sessions_path, class: "button primary-button ml-2" %>
         <% end %>
       </ul>
     </div>

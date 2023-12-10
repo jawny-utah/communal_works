@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     resources :service_orders, only: %i(new)
   end
   resources :service_orders, except: :new do
-    get :cancellation_reason_page, on: :member
+    get :cancellation_reason, on: :member
+    get :rate, on: :member
   end
   resource :personal_informations, only: :show
+  resources :notifications, only: %i(index destroy)
 end

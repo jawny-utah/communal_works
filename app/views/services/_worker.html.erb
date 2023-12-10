@@ -1,0 +1,10 @@
+<div class="block-wrapper mt-5">
+  <h2 class="mb-4"> Виконавець </h2>
+  <p> <%= link_to @service.worker.full_name, worker_path(@service.worker), class: "font-medium text-xl text-blue-600" %> </p>
+  <p class="mt-2"> Виконано замовлень: <%= @service.worker.service_orders.finished.count %> </p>
+  <div class="flex">
+    <p> Середня оцінка: </p>
+    <p class="flex ml-1"> <%= star_icon %> <%= @service.worker.average_rate %> </p>
+  </div>
+  <p class="text-xs mt-2"> Зареєестрований на сайті <%= @service.worker.created_at.strftime("%F") %> </p>
+</div>

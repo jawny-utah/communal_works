@@ -7,4 +7,9 @@ class User < ApplicationRecord
 
   has_one :worker, dependent: :destroy
   has_many :service_orders, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+
+  def unread_notifications
+    notifications.where(read: false)
+  end
 end

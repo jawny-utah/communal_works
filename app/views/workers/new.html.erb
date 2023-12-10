@@ -1,6 +1,8 @@
 <div class="w-2/3 mx-auto">
   <h2> Створити робочий акаунт </h2>
-  <%= flash[:error] %>
+  <div class="text-red-600">
+    <%= render template: "layouts/flash", locals: { flash: flash[:error] } %>
+  </div>
   <%= form_with model: @worker, class: "flex flex-col" do |f| %>
     <div class="input-wrapper">
       <%= f.label :category, "Категорія, в якій ви будете надавати послуги" %>

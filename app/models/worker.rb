@@ -6,4 +6,8 @@ class Worker < ApplicationRecord
   validates :category, :description, presence: true
 
   delegate :full_name, to: :user
+
+  def average_rate
+    service_orders.average(:rate).to_f
+  end
 end

@@ -1,22 +1,22 @@
-<div class="w-2/3 mx-auto">
+<div class="w-2/3 mx-auto block-wrapper">
   <h2> Реєстрація нового користувача </h2>
-  <%= flash[:error] %>
+  <%= render template: "layouts/flash", locals: { flash: flash[:error] } %>
   <%= form_with model: @user, class: "flex flex-col" do |f| %>
     <div class="input-wrapper">
       <%= f.label :email, "Електронна пошта *" %>
-      <%= f.text_field :email, required: true %>
+      <%= f.text_field :email, placeholder: "example@email.com", required: true %>
     </div>
     <div class="input-wrapper">
       <%= f.label :full_name, "Повне ім'я *" %>
-      <%= f.text_field :full_name, required: true %>
+      <%= f.text_field :full_name, placeholder: "Іван Шевченко", required: true %>
     </div>
     <div class="input-wrapper">
       <%= f.label :username, "Ім'я користувача *" %>
-      <%= f.text_field :username, required: true %>
+      <%= f.text_field :username, placeholder: "ivan_shevchenko", required: true %>
     </div>
     <div class="input-wrapper">
       <%= f.label :phone_number, "Телефон *" %>
-      <%= f.text_field :phone_number, required: true %>
+      <%= f.text_field :phone_number, placeholder: "380991234141", required: true %>
     </div>
     <div class="input-wrapper">
       <%= f.label :date_of_birth, "Дата народження" %>

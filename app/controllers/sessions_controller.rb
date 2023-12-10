@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user.id)
     else
-      flash[:error] = "Неправильна пошта або пароль."
+      flash[:error] = ["Неправильна пошта або пароль."]
       redirect_to new_sessions_path
     end
   end

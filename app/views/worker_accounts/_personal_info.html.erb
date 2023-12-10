@@ -11,10 +11,7 @@
     Опис:
     <%= @worker_account.description %>
   </p>
-  <p>
-    Відкриті до нової роботи:
-    <%= @worker_account.looking_for_work %>
-  </p>
+  <%= render partial: "workers/opened_to_new_work", locals: { worker: @worker_account } %>
   <div class="flex gap-4 mt-5 justify-end">
     <%= link_to "Редагувати", edit_worker_accounts_path, class: "button primary-button" %>
     <%= link_to "Створити послугу", new_service_path, class: "button primary-button" %>

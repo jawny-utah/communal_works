@@ -1,7 +1,8 @@
-
 <div class="w-2/3 mx-auto block-wrapper">
   <h2> Введіть причину відмови від замовлення</h2>
-  <%= flash[:error] %>
+  <div class="text-red-600">
+    <%= render template: "layouts/flash", locals: { flash: flash[:error] } %>
+  </div>
   <%= form_with model: @service_order, method: :delete, class: "flex flex-col" do |f| %>
     <%- cancelled_by_user = @service_order.user.id == current_user.id %>
     <%= f.hidden_field :cancelled_by_user, value: cancelled_by_user %>

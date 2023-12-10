@@ -1,0 +1,23 @@
+<div class="block-wrapper mt-4">
+  <h3 class="mb-4"> Отримані відгуки: </h3>
+  <div class="service-wrapper">
+    <% @worker.service_orders.finished.where.not(rate: nil).each do |service_order| %>
+      <div class="service">
+        <div class="flex items-center">
+          <h5 class="mr-3 mb-0"><%= service_order.user.full_name %></h5>
+          <%= star_icon %>
+          <%= service_order.rate %>
+        </div>
+        <div class="mt-3"> Повідомлення: </div>
+        <% if service_order.rate_message %>
+          <%= service_order.rate_message %>
+        <% else %>
+          <p> - </p>
+        <% end %>
+      </div>
+    <% end %>
+    <% if @worker.service_orders.finished.where.not(rate: nil).empty? %>
+      <em> Виконавець ще не отримував відгуки за свою роботу </em>
+    <% end %>
+  </div>
+</div>

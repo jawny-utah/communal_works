@@ -1,6 +1,9 @@
 <div class="block-wrapper">
   <%= link_to "< Назад ", request.referrer, class: "button secondary-button mb-4" %>
   <h2> Інформація про виконавця </h2>
+  <h3>
+    <%= @worker.user.full_name %>
+  </h3>
   <p>
     Категорія:
     <%= @worker.category %>
@@ -9,19 +12,7 @@
     Опис:
     <%= @worker.description %>
   </p>
-  <p>
-    Відкритий до нової роботи:
-    <%= @worker.looking_for_work %>
-  </p>
+  <%= render partial: "workers/opened_to_new_work", locals: { worker: @worker } %>
 </div>
-<div class="block-wrapper mt-4">
-  <h3 class="mb-4"> Створені послуги: </h3>
-  <div class="service-wrapper">
-    <% @worker.services.all.each do |service| %>
-      <%= render partial: "services/service", locals: { service: service } %>
-    <% end %>
-    <% if @worker.services.empty? %>
-      <em> Виконавець ще не створив послуги </em>
-    <% end %>
-  </div>
-</div>
+<%= render partial: "workers/created_services" %>
+<%= render partial: "workers/rate" %>
