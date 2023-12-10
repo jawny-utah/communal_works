@@ -1,0 +1,12 @@
+<div class="block-wrapper">
+  <h2> Ваші повідомлення </h2>
+  <div class="service-wrapper mt-6">
+    <% current_user.notifications.order(created_at: :desc).each do |notification| %>
+      <%= render partial: "notifications/notification", locals: { notification: notification } %>
+    <% end %>
+    <% if current_user.notifications.empty? %>
+      <em> Повідомлень немає... </em>
+    <% end %>
+  </div>
+</div>
+<% @notifications.update_all(read: true) %>

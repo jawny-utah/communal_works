@@ -1,0 +1,18 @@
+.service-score {
+  @apply justify-end;
+
+  unicode-bidi: bidi-override;
+  direction: rtl;
+
+  svg {
+    @apply text-orange-300;
+  }
+
+  svg:hover, svg.scored, svg.scored ~ svg, svg:hover ~ svg {
+    @apply fill-orange-300;
+  }
+
+  svg path {
+    @apply pointer-events-none;
+  }
+}

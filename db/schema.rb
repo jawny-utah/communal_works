@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_03_111500) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_09_161221) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id"
+    t.boolean "work_account_notification"
+    t.boolean "read"
+    t.bigint "record_id"
+    t.string "record_class"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
 
   create_table "service_orders", force: :cascade do |t|
     t.bigint "service_id"
@@ -25,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_03_111500) do
     t.boolean "cancelled_by_user"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "rate_message"
     t.index ["service_id"], name: "index_service_orders_on_service_id"
     t.index ["user_id"], name: "index_service_orders_on_user_id"
   end

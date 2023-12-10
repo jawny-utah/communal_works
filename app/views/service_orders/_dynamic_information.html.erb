@@ -1,0 +1,15 @@
+<div>
+  <p> Статус: <%= service_order_status(@service_order.status) %> </p>
+  <% if @service_order.cancellation_reason %>
+    <p> Причина відміни: <%= @service_order.cancellation_reason %> </p>
+    <p> Відмінив <%= @service_order.cancelled_by_user ? "замовник" : "виконавець" %>. </p>
+  <% end %>
+  <% if @service_order.rate %>
+    <p>
+      Оцінка: <%= @service_order.rate %>
+    </p>
+    <p>
+      Повідомлення: <%= @service_order.rate_message %>
+    </p>
+  <% end %>
+</div>

@@ -19,7 +19,7 @@ class WorkersController < ApplicationController
     if @worker.valid?
       redirect_to worker_accounts_path
     else
-      flash[:error] = @worker.errors.full_messages.join(" ")
+      flash[:error] = @worker.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end
@@ -30,7 +30,7 @@ class WorkersController < ApplicationController
     if @worker.update(worker_params)
       redirect_to worker_accounts_path
     else
-      flash[:error] = @worker.errors.full_messages.join(" ")
+      flash[:error] = @worker.errors.full_messages
       render :edit, status: :unprocessable_entity
     end
   end

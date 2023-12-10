@@ -1,0 +1,7 @@
+.notification {
+  @apply min-w-[200px] flex w-full bg-white flex-col border border-solid border-gray-300 p-4 rounded-xl hover:bg-gray-100;
+
+  &--unread {
+    @apply bg-yellow-100 hover:bg-yellow-200;
+  }
+}

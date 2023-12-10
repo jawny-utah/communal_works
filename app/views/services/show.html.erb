@@ -1,6 +1,6 @@
 <div class="block-wrapper">
   <%= link_to "< Назад ", request.referrer, class: "button secondary-button" %>
-  <p class="text-xs mb-2 mt-4"> Опубліковано <%= @service.created_at %> </p>
+  <p class="text-xs mb-2 mt-4"> Опубліковано <%= time_ago_in_words(@service.created_at) %> </p>
   <h2> <%= @service.title %> </h2>
   <p class="text-2xl"> Ціна: <%= @service.price %> </p>
   <hr class="my-4">
@@ -15,12 +15,7 @@
     <% end %>
   </div>
 </div>
-<div class="block-wrapper mt-5">
-  <h2 class="mb-4"> Виконавець </h2>
-  <p> <%= link_to @service.worker.full_name, worker_path(@service.worker), class: "font-medium text-xl text-blue-600" %> </p>
-  <p> Виконано замовлень: <%= @service.worker.service_orders.finished.count %> </p>
-  <p class="text-xs mt-2"> Зареєестрований на сайті <%= @service.worker.created_at.strftime("%F") %> </p>
-</div>
+<%= render partial: "services/worker" %>
 <div class="block-wrapper mt-4">
   <h3> Останні оголошення автора </h3>
   <p class="text-gray-500 hover:text-gray-600"> <%= link_to "Всі оголошення автора >", worker_path(@service.worker) %> </p>

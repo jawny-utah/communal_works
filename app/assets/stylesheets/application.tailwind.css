@@ -7,6 +7,8 @@
 @import "services";
 @import "worker";
 @import "tab";
+@import "service_order_rate";
+@import "notifications";
 
 @import "tailwindcss/utilities";
 

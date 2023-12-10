@@ -1,0 +1,6 @@
+<div>
+  <p> Було створено <%= time_ago_in_words(@service_order.created_at) %>
+  <p> Замовник: <%= @service_order.user.full_name %> </p>
+  <p> Контактні дані: <%= @service_order.contact_info %> </p>
+  <p> Опис: <%= @service_order.description %> </p>
+</div>

@@ -9,7 +9,7 @@
 <div class="block-wrapper mt-4">
   <h3> Ваші замовлення </h3>
   <div class="service-wrapper">
-    <% @user.service_orders.each do |service_order| %>
+    <% @user.service_orders.order(created_at: :desc).each do |service_order| %>
       <%= render partial: "personal_informations/service_order", locals: { service_order: service_order }%>
     <% end %>
     <% if @user.service_orders.empty? %>

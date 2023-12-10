@@ -4,7 +4,7 @@
   <div class="tab active-tab"> Замовлення </div>
 </div>
 <div class="service-wrapper mt-6">
-  <% @worker_account.service_orders.each do |service_order| %>
+  <% @worker_account.service_orders.order(created_at: :desc).each do |service_order| %>
     <%= render partial: "worker_accounts/service_order", locals: { service_order: service_order } %>
   <% end %>
 </div>

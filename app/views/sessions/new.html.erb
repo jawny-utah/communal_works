@@ -1,6 +1,8 @@
-<div class="w-2/3 mx-auto">
+<div class="w-2/3 mx-auto block-wrapper">
   <h2> Авторизація </h2>
-  <%= flash[:error] %>
+  <div class="text-red-600">
+    <%= render template: "layouts/flash", locals: { flash: flash[:error] } %>
+  </div>
   <%= form_with url: sessions_path, method: :post, class: "flex flex-col" do |f| %>
     <div class="input-wrapper">
       <%= f.label :email, "Електронна пошта *" %>

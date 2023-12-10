@@ -1,0 +1,26 @@
+<div class="w-2/3 mx-auto block-wrapper">
+  <h2> Оцініть роботу виконавця</h2>
+  <div class="text-red-600">
+    <%= render template: "layouts/flash", locals: { flash: flash[:error] } %>
+  </div>
+  <%= form_with model: @service_order, method: :put, class: "flex flex-col" do |f| %>
+    <p class="mt-5"> Загальна оцінка * </p>
+    <div class="flex service-score" data-controller="rate">
+      <% star_index = 5 %>
+      <% 5.times do %>
+        <%= inline_svg "star.svg", class: "w-8 h-8 cursor-pointer", data: { action: "click->rate#rateStream",
+                                                                                  rate_score_param: star_index } %>
+        <% star_index -= 1 %>
+      <% end %>
+      <%= f.hidden_field :rate, value: 0, data: { rate_target: "rateInput" } %>
+    </div>
+    <div class="input-wrapper mt-4">
+      <%= f.label :rate_message, "Відгук за виконану роботу" %>
+      <%= f.text_area :rate_message %>
+    </div>
+    <div class="flex gap-4 mt-5 justify-end">
+      <%= link_to "< Назад ", service_order_path(@service_order), class: "button secondary-button" %>
+      <%= f.submit "Підтвердити", class: "button red-button" %>
+    </div>
+  <% end %>
+</div>
