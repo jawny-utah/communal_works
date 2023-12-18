@@ -3,6 +3,7 @@ class WorkerAccountsController < ApplicationController
 
   def show
     @worker_account = current_user.worker
+    @pagy, @services = pagy(@worker_account.services)
   end
 
   def edit
@@ -10,8 +11,8 @@ class WorkerAccountsController < ApplicationController
   end
 
   def service_orders
-    @service_orders = current_user.worker.service_orders
     @worker_account = current_user.worker
+    @pagy, @service_orders = pagy(@worker_account.service_orders.order(created_at: :desc))
   end
 
   private

@@ -1,5 +1,11 @@
 ---
 uk:
+  ransack:
+    predicates:
+      cont: Містить
+      eq: Рівне
+      start: Починається
+      end: Закінчується
   activerecord:
     errors:
       messages:

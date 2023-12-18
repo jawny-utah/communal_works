@@ -1,10 +1,12 @@
+<% redirect_id = params[:service_id] ? params[:service_id] : params[:service_order][:service_id] %>
+
 <div class="w-2/3 mx-auto block-wrapper">
   <h2> Створити замовлення </h2>
   <div class="text-red-600">
     <%= render template: "layouts/flash", locals: { flash: flash[:error] } %>
   </div>
   <%= form_with model: @service_order, class: "flex flex-col" do |f| %>
-    <%= f.hidden_field :service_id, value: params[:service_id] %>
+    <%= f.hidden_field :service_id, value: redirect_id %>
     <div class="input-wrapper">
       <%= f.label :contact_info, "Контактна інформація" %>
       <%= f.text_field :contact_info, required: true %>
@@ -14,7 +16,7 @@
       <%= f.text_area :description, class: "min-h-[120px]", required: true %>
     </div>
     <div class="flex gap-4 mt-5 justify-end">
-      <%= link_to "< Назад ", service_path(params[:service_id]), class: "button secondary-button" %>
+      <%= link_to "< Назад ", service_path(redirect_id), class: "button secondary-button" %>
       <%= f.submit "Підтвердити", class: "button primary-button" %>
     </div>
   <% end %>

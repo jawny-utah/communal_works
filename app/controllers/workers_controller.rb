@@ -2,11 +2,15 @@ class WorkersController < ApplicationController
   before_action :require_authorization, except: %i(index show)
 
   def index
-    @workers = Worker.all
+    workers = Worker.all
+    workers = workers.joins(:categories).where(categories: { id: params[:category_ids] }) if params[:category_ids].present? && params[:category_ids] != [""]
+    workers = workers.order(created_at: params[:order_by]&.to_sym) if params[:order_by].present? && params[:order_by] != [""]
+    @pagy, @workers = pagy(workers)
   end
 
   def show
     @worker = Worker.find_by(id: params[:id])
+    @pagy, @services = pagy(@worker.services)
   end
 
   def new
@@ -38,6 +42,6 @@ class WorkersController < ApplicationController
   private
 
   def worker_params
-    params.require(:worker).permit(:category, :description, :looking_for_work)
+    params.require(:worker).permit(:description, :looking_for_work, category_ids: [])
   end
 end

@@ -10,8 +10,16 @@
     <% if current_user %>
       <% if service_created_by_current_user?(@service.worker_id) %>
         <%= link_to "Редагувати", edit_service_path(@service), class: "button primary-button" %>
+        <% if @service.rejection_reason && @service.not_active? %>
+          <div class='px-4 py-2 bg-red-200'>
+            <h5> Причина відмови: </h5>
+            <p><%= @service.rejection_reason %><p>
+          </div>
+        <% end %>
       <% end %>
-      <%= link_to "Замовити", new_service_service_order_path(@service), class: "button primary-button" %>
+      <% unless service_created_by_current_user?(@service.worker_id) %>
+        <%= link_to "Замовити", new_service_service_order_path(@service), class: "button primary-button" %>
+      <% end %>
     <% end %>
   </div>
 </div>

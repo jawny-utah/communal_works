@@ -44,7 +44,7 @@ class ServicesController < ApplicationController
   private
 
   def service_params
-    params.require(:service).permit(:title, :description, :price)
+    params.require(:service).permit(:title, :description, :price, :status)
   end
 
   def worker_account_presence

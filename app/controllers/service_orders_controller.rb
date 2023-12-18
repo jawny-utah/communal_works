@@ -18,12 +18,12 @@ class ServiceOrdersController < ApplicationController
   end
 
   def show
-    return redirect_to root_path unless @service_order.worker.id == current_user.worker.id ||
+    return redirect_to root_path unless @service_order.worker.id == current_user.worker&.id ||
                                         @service_order.user.id == current_user.id
   end
 
   def update
-    return redirect_to root_path unless @service_order.worker.id == current_user.worker.id ||
+    return redirect_to root_path unless @service_order.worker.id == current_user.worker&.id ||
                                         @service_order.user.id == current_user.id
 
     @service_order.update(service_order_params)
@@ -31,7 +31,7 @@ class ServiceOrdersController < ApplicationController
   end
 
   def destroy
-    return redirect_to root_path unless @service_order.worker.id == current_user.worker.id ||
+    return redirect_to root_path unless @service_order.worker.id == current_user.worker&.id ||
               @service_order.user.id == current_user.id ||
               @service_order.not_cancelled?
 

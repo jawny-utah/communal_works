@@ -1,6 +1,26 @@
-<h2 class="mb-8"> Всі послуги </h3>
+<h1 class="text-center my-8"> Вітаємо на сайті </h1>
+<h2 class="mb-8"> Всі послуги </h2>
+<%= form_with url: root_path, method: :get, class: "flex flex-col block-wrapper mb-8" do |f| %>
+  <div class="flex gap-4">
+    <div class="input-wrapper w-60">
+      <%= f.label :category, "Категорії послуг" %>
+      <%= f.collection_select :category_ids, Category.all, :id, :title, { selected: params[:category_ids] }, { multiple: true, class: "mb-3 js-multiple-select" } %>
+    </div>
+    <div class="input-wrapper w-60">
+      <%= f.label :order_by, "Сортувати" %>
+      <%= f.select :order_by, [["Спочатку старі", 'asc'], ["Спочатку нові", 'desc']], selected: params[:order_by] %>
+    </div>
+  </div>
+  <% if params[:category_ids].present? %>
+    <%= link_to "Очистити фільтр", root_path, class: "button secondary-button mb-4" %>
+  <% end %>
+  <%= f.submit "Підтвердити", class: "button primary-button" %>
+<% end %>
 <div class="service-wrapper">
-  <% Service.all.each do |service| %>
+  <% @services.each do |service| %>
     <%= render partial: "services/service", locals: { service: service } %>
   <% end %>
 </div>
+<% if @pagy.pages > 1 %>
+  <%= render template: "layouts/pagination", locals: { pagy: @pagy } %>
+<% end %>

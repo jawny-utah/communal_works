@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="flex gap-4 mt-4">
-    <% if @service_order.worker.id == current_user.worker.id %>
+    <% if @service_order.worker.id == current_user.worker&.id %>
       <% if @service_order.on_review? %>
         <%= button_to "Приступити до виконання", service_order_path(@service_order, service_order: { status: :in_progress }), method: :put, class: "button primary-button" %>
       <% elsif @service_order.in_progress? %>

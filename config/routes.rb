@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -16,6 +17,10 @@ Rails.application.routes.draw do
     get :cancellation_reason, on: :member
     get :rate, on: :member
   end
-  resource :personal_informations, only: :show
-  resources :notifications, only: %i(index destroy)
+  resource :personal_informations, only: %i(show edit update)
+  resources :notifications, only: %i(index destroy) do
+    collection do
+      delete :destroy_all
+    end
+  end
 end

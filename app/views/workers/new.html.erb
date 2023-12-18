@@ -1,12 +1,12 @@
-<div class="w-2/3 mx-auto">
+<div class="w-2/3 mx-auto block-wrapper">
   <h2> Створити робочий акаунт </h2>
   <div class="text-red-600">
     <%= render template: "layouts/flash", locals: { flash: flash[:error] } %>
   </div>
   <%= form_with model: @worker, class: "flex flex-col" do |f| %>
     <div class="input-wrapper">
-      <%= f.label :category, "Категорія, в якій ви будете надавати послуги" %>
-      <%= f.text_field :category, required: true %>
+      <%= f.label :category, "Виберіть категорії, в яких ви будете надавати послуги" %>
+      <%= f.collection_select :category_ids, Category.all, :id, :title, {  }, { multiple: true, class: "mb-3 js-multiple-select", required: true} %>
     </div>
     <div class="input-wrapper">
       <%= f.label :description, "Ваш короткий опис" %>
@@ -14,7 +14,7 @@
     </div>
     <div class="input-wrapper">
       <%= f.label :looking_for_work, "На даний момент відкриті до нових пропозицій" %>
-      <%= f.check_box :looking_for_work, default: true, class: "mr-auto" %>
+      <%= f.check_box :looking_for_work, checked: true, class: "mr-auto" %>
     </div>
     <div class="flex gap-4 mt-5 justify-end">
       <%= link_to "< Назад ", root_path, class: "button secondary-button" %>
