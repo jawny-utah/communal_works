@@ -14,14 +14,22 @@ class ServiceOrder < ApplicationRecord
   after_update :notify_client_about_finished
   after_update :notify_worker_about_rate
 
-  def worker_cant_order_his_service
-    errors.add(:base, "Ви не можете замовити послугу у самого себе.") if user_id == service.worker_id
+  def self.ransackable_associations(auth_object = nil)
+    ["service", "user", "worker"]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["cancellation_reason", "cancelled_by_user", "contact_info", "created_at", "description", "id", "rate", "rate_message", "service_id", "status", "updated_at", "user_id"]
   end
 
   private
 
+  def worker_cant_order_his_service
+    errors.add(:base, "Ви не можете замовити послугу у самого себе.") if User.find(user_id).worker&.id == service.worker_id
+  end
+
   def notify_worker
-    Notification.create(user_id: worker.id,
+    Notification.create(user_id: worker.user.id,
       work_account_notification: true,
       record_id: id,
       record_class: self.class.to_s,
@@ -45,7 +53,7 @@ class ServiceOrder < ApplicationRecord
   end
 
   def notify_worker_about_cancelled
-    Notification.create(user_id: worker.id,
+    Notification.create(user_id: worker.user.id,
       work_account_notification: true,
       record_id: id,
       record_class: self.class.to_s,
@@ -61,7 +69,7 @@ class ServiceOrder < ApplicationRecord
   end
 
   def notify_worker_about_rate
-    Notification.create(user_id: worker.id,
+    Notification.create(user_id: worker.user.id,
       work_account_notification: true,
       record_id: id,
       record_class: self.class.to_s,

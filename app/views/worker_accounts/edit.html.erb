@@ -5,8 +5,8 @@
   </div>
   <%= form_with model: @worker, method: :put, class: "flex flex-col" do |f| %>
     <div class="input-wrapper">
-      <%= f.label :category, "Категорія, в якій ви будете надавати послуги" %>
-      <%= f.text_field :category, value: @worker.category, required: true %>
+      <%= f.label :category, "Виберіть категорії, в яких ви будете надавати послуги" %>
+      <%= f.collection_select :category_ids, Category.all, :id, :title, {  }, { multiple: true, class: "mb-3 js-multiple-select", required: true} %>
     </div>
     <div class="input-wrapper">
       <%= f.label :description, "Ваш короткий опис" %>

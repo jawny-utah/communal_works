@@ -1,6 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 
+@import "tom-select/dist/css/tom-select";
 @import "input";
 @import "heading";
 @import "buttons";
@@ -9,6 +10,7 @@
 @import "tab";
 @import "service_order_rate";
 @import "notifications";
+@import "pagination";
 
 @import "tailwindcss/utilities";
 

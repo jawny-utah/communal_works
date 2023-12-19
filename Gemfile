@@ -32,3 +32,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "pagy", "~> 6.2"
+
+gem "activeadmin", "~> 3.2"
+gem "sassc-rails"

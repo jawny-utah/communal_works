@@ -5,7 +5,9 @@
   <h4 class="mt-4"> Ваша інформація </h4>
   <p>
     Категорія:
-    <%= @worker_account.category %>
+    <div class="flex gap-2 flex-wrap">
+      <%= render partial: "worker_accounts/category", collection: @worker_account.categories, as: :category %>
+    </div>
   </p>
   <p>
     Опис:

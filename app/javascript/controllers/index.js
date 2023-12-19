@@ -9,3 +9,19 @@ application.register("hello", HelloController)
 
 import RateController from "./rate_controller"
 application.register("rate", RateController)
+
+import TomSelect from 'tom-select'
+
+let selects = []
+
+document.addEventListener("turbo:before-cache", function() {
+  selects.forEach((select) => {
+    select.destroy()
+  })
+})
+
+document.addEventListener("turbo:load", function() {
+  document.querySelectorAll('.js-multiple-select').forEach((element) => {
+    new TomSelect(element)
+  })
+})

@@ -6,13 +6,19 @@
   </h3>
   <p>
     Категорія:
-    <%= @worker.category %>
+    <div class="flex gap-2 mb-2 flex-wrap">
+      <%= render partial: "worker_accounts/category", collection: @worker.categories, as: :category %>
+    </div>
   </p>
   <p>
     Опис:
     <%= @worker.description %>
   </p>
   <%= render partial: "workers/opened_to_new_work", locals: { worker: @worker } %>
+  <p>
+    Середня оцінка:
+    <%= @worker.average_rate %>
+  </p>
 </div>
 <%= render partial: "workers/created_services" %>
 <%= render partial: "workers/rate" %>

@@ -4,6 +4,7 @@
     <%= render template: "layouts/flash", locals: { flash: flash[:error] } %>
   </div>
   <%= form_with model: @service, method: :put, class: "flex flex-col" do |f| %>
+    <%= f.hidden_field :status, {value: "on_review"} %>
     <div class="input-wrapper">
       <%= f.label :title, "Заголовок" %>
       <%= f.text_field :title, value: @service.title, required: true %>

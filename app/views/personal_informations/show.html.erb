@@ -5,15 +5,21 @@
   <p> Номер телефону: <%= @user.phone_number %> </p>
   <p> Ваш псевдонім: <%= @user.username %> </p>
   <p> Дата народження: <%= @user.date_of_birth %> </p>
+  <div class="flex gap-4 mt-5 justify-end">
+    <%= link_to "Редагувати", edit_personal_informations_path, class: "button primary-button" %>
+  </div>
 </div>
 <div class="block-wrapper mt-4">
   <h3> Ваші замовлення </h3>
   <div class="service-wrapper">
-    <% @user.service_orders.order(created_at: :desc).each do |service_order| %>
+    <% @service_orders.each do |service_order| %>
       <%= render partial: "personal_informations/service_order", locals: { service_order: service_order }%>
     <% end %>
-    <% if @user.service_orders.empty? %>
+    <% if @service_orders.empty? %>
       <em> У вас ще немає замовлень </em>
     <% end %>
   </div>
+  <% if @pagy.pages > 1 %>
+    <%= render template: "layouts/pagination", locals: { pagy: @pagy } %>
+  <% end %>
 </div>
